@@ -104,7 +104,7 @@ router.post('/pelanggan/register', async (req, res) => {
         const newPelanggan = await Pelanggan.create({
             username,
             password,
-            no_whatsapp: no_whatsapp || null
+            no_whatsapp: no_whatsapp || ""
         });
 
         res.json({
@@ -112,10 +112,11 @@ router.post('/pelanggan/register', async (req, res) => {
             message: 'Registrasi berhasil'
         });
     } catch (error) {
-        console.error('Error registrasi:', error);
+        console.error('ROUTE ERROR registrasi:', error);
         res.status(500).json({
             success: false,
-            message: 'Terjadi kesalahan server'
+            message: 'DEBUG: Terjadi kesalahan server di ROUTE: ' + error.message,
+            error: error
         });
     }
 });

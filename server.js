@@ -19,6 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Logging middleware
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
+    if (Object.keys(req.body).length > 0) {
+        console.log('Body:', JSON.stringify(req.body, null, 2));
+    }
     next();
 });
 
@@ -54,11 +57,11 @@ app.get('/', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error('Error:', err);
+    console.error('GLOBAL ERROR:', err);
     res.status(500).json({
         success: false,
-        message: 'Terjadi kesalahan server',
-        error: err.message
+        message: 'DEBUG: Terjadi kesalahan server GLOBAL: ' + err.message,
+        error: err
     });
 });
 

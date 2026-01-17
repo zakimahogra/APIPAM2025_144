@@ -21,7 +21,7 @@ const Pelanggan = sequelize.define('Pelanggan', {
     },
     no_whatsapp: {
         type: DataTypes.STRING(15),
-        allowNull: false
+        allowNull: true
     }
 }, {
     tableName: 'pelanggan',
